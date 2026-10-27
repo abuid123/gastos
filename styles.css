@@ -95,6 +95,14 @@ button,input,select{font:inherit;color:inherit}
 .preview{margin:6px 0 0;font-size:.85rem;color:var(--muted);min-height:1.2em}
 .err{margin:6px 0 0;font-size:.88rem;color:var(--over)}
 .err:empty{display:none}
+.seg{display:inline-flex;padding:3px;border-radius:12px;background:var(--track);gap:2px;max-width:100%}
+.seg.full{display:flex}
+.seg button{flex:1;border:0;background:transparent;border-radius:9px;padding:8px 14px;min-height:40px;font-weight:600;font-size:.94rem;color:var(--muted);cursor:pointer}
+.seg button[aria-checked="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px rgba(15,27,42,.14)}
+.pct{display:flex;align-items:center;gap:8px}
+.pct .text{width:5.5em;flex:none}
+.pct span{color:var(--muted);font-weight:600}
+select.text{cursor:pointer}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chip{border:1px solid var(--line);background:transparent;border-radius:999px;padding:8px 14px;font-size:.92rem;cursor:pointer}
 .chip:hover{border-color:var(--muted)}
@@ -146,6 +154,7 @@ input[type="date"].text::-webkit-date-and-time-value{text-align:left}
 .sw.over{background:var(--over)}
 .sw.tick{width:12px;height:2px;background:var(--ink);border-radius:1px}
 .sw.base{width:14px;height:0;border-top:2px dashed var(--muted);border-radius:0}
+.sw.ing{width:9px;height:9px;border-radius:50%;background:var(--good)}
 .daycap{margin:0;font-size:.92rem;min-height:1.4em}
 .daycap .num{font-weight:500}
 
@@ -170,6 +179,8 @@ input[type="date"].text::-webkit-date-and-time-value{text-align:left}
 .mov .what span{display:block;color:var(--muted);font-size:.86rem;overflow-wrap:anywhere}
 .mov .what .tag{display:inline-block;margin-left:6px;padding:1px 7px;border-radius:999px;background:var(--accent-soft);color:var(--ink);font-size:.72rem;font-weight:600;vertical-align:1px}
 .mov .amt{font-family:var(--f-num);font-variant-numeric:tabular-nums}
+.mov .amt.pos{color:var(--good)}
+.day h3 .cobro{color:var(--good);font-weight:500;margin-left:6px}
 .del{width:38px;height:38px;border-radius:9px;border:1px solid transparent;background:transparent;cursor:pointer;display:grid;place-items:center;color:var(--muted)}
 .del:hover{border-color:var(--line);color:var(--over)}
 .del svg{width:16px;height:16px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round}

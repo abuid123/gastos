@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Gasto diario</title>
-<meta name="description" content="Anotá cada gasto y mirá cuánto te queda para hoy. Lo que sobra o te pasás se arrastra a los días siguientes. Tus datos quedan en tu dispositivo.">
+<meta name="description" content="Anotá cada gasto y mirá cuánto te queda para hoy, cobres por mes o por día. Lo que sobra o te pasás se arrastra a los días siguientes. Tus datos quedan en tu dispositivo.">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F1F4F7">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0C131C">
 <meta name="color-scheme" content="light dark">
@@ -53,13 +53,40 @@
 
   <form class="card entry" id="setup" novalidate>
     <div>
-      <label class="field-label" for="su-monto">Plata para el período</label>
-      <div class="amount"><span>$</span><input id="su-monto" inputmode="decimal" autocomplete="off" placeholder="0"></div>
-      <p class="preview" id="su-preview"></p>
+      <span class="field-label" id="su-modo-label">¿Cómo cobrás?</span>
+      <div class="seg full" role="radiogroup" aria-labelledby="su-modo-label" id="su-modo">
+        <button type="button" role="radio" aria-checked="true" data-m="mensual">Sueldo por mes</button>
+        <button type="button" role="radio" aria-checked="false" data-m="diario">Por día</button>
+      </div>
     </div>
-    <div class="two">
-      <div><label class="field-label" for="su-desde">Desde</label><input class="text" type="date" id="su-desde"></div>
-      <div><label class="field-label" for="su-hasta">Hasta</label><input class="text" type="date" id="su-hasta"></div>
+    <div class="entry" id="su-mensual">
+      <div>
+        <label class="field-label" for="su-monto">Plata para el período</label>
+        <div class="amount"><span>$</span><input id="su-monto" inputmode="decimal" autocomplete="off" placeholder="0"></div>
+        <p class="preview" id="su-preview"></p>
+      </div>
+      <div class="two">
+        <div><label class="field-label" for="su-desde">Desde</label><input class="text" type="date" id="su-desde"></div>
+        <div><label class="field-label" for="su-hasta">Hasta</label><input class="text" type="date" id="su-hasta"></div>
+      </div>
+    </div>
+    <div class="entry" id="su-diario" hidden>
+      <div>
+        <label class="field-label" for="su-inicial">Plata que tenés hoy (opcional)</label>
+        <div class="amount"><span>$</span><input id="su-inicial" inputmode="decimal" autocomplete="off" placeholder="0"></div>
+        <p class="preview" id="su-inicial-preview">Lo que tenés en mano para arrancar. Ayuda a que la primera semana no quede corta.</p>
+      </div>
+      <div class="two">
+        <div>
+          <label class="field-label" for="su-ventana">Repartir cada cobro en</label>
+          <select class="text" id="su-ventana"></select>
+        </div>
+        <div>
+          <label class="field-label" for="su-apartar">Apartar de cada cobro</label>
+          <div class="pct"><input class="text" id="su-apartar" inputmode="numeric" autocomplete="off" value="0"><span>%</span></div>
+        </div>
+      </div>
+      <p class="hint" id="su-diario-hint"></p>
     </div>
     <p class="err" id="su-err"></p>
     <button class="btn primary" type="submit">Empezar</button>
@@ -67,8 +94,12 @@
   </form>
 
   <form class="card entry needs-period" id="f-gasto" novalidate>
+    <div class="seg full" role="radiogroup" aria-label="Qué anotás" id="tipo-seg">
+      <button type="button" role="radio" aria-checked="true" data-t="gasto">Gasto</button>
+      <button type="button" role="radio" aria-checked="false" data-t="ingreso" id="tipo-ingreso">Cobro</button>
+    </div>
     <div>
-      <label class="field-label" for="in-monto">Anotar un gasto</label>
+      <label class="field-label" for="in-monto" id="in-label">Anotar un gasto</label>
       <div class="amount"><span>$</span><input id="in-monto" inputmode="decimal" autocomplete="off" enterkeyhint="done" placeholder="0"></div>
       <p class="preview" id="in-preview">Podés escribir 4500, 4.500,50 o 15k</p>
       <p class="err" id="in-err"></p>
@@ -76,13 +107,13 @@
     <div class="chips" id="chips" role="radiogroup" aria-label="Categoría"></div>
     <input class="text" id="in-nota" maxlength="120" autocomplete="off" placeholder="Detalle (opcional): café, nafta, Coto…">
     <div class="row">
-      <input class="text" type="date" id="in-fecha" aria-label="Fecha del gasto">
-      <label class="switch" for="in-fijo">
+      <input class="text" type="date" id="in-fecha" aria-label="Fecha">
+      <label class="switch" for="in-fijo" id="fijo-wrap">
         <input type="checkbox" id="in-fijo">
-        <span>Gasto fijo<small>Alquiler, servicios, cuotas. Se reparte entre los días que quedan.</small></span>
+        <span>Gasto fijo<small id="fijo-help">Alquiler, servicios, cuotas. Se reparte entre los días que quedan.</small></span>
       </label>
     </div>
-    <button class="btn primary" type="submit">Anotar gasto</button>
+    <button class="btn primary" type="submit" id="in-submit">Anotar gasto</button>
   </form>
 
   <aside class="notice warn needs-period" id="nag" hidden>
@@ -104,7 +135,8 @@
       <span><i class="sw bar"></i>Gastado</span>
       <span><i class="sw over"></i>Te pasaste</span>
       <span><i class="sw tick"></i>Lo que tenías ese día</span>
-      <span><i class="sw base"></i>Base diaria</span>
+      <span id="lg-ing"><i class="sw ing"></i>Cobraste</span>
+      <span id="lg-base"><i class="sw base"></i><span id="lg-base-txt">Base diaria</span></span>
     </div>
     <p class="daycap" id="daycap"></p>
   </section>
@@ -142,6 +174,35 @@
       </button>
     </div>
 
+    <fieldset id="sec-cobro">
+      <legend>Cómo cobrás</legend>
+      <label class="opt" for="aj-cobro-m"><input type="radio" name="cobro" value="mensual" id="aj-cobro-m"><span><b>Sueldo por mes</b><small>Cargás la plata del período y se divide por día.</small></span></label>
+      <label class="opt" for="aj-cobro-d"><input type="radio" name="cobro" value="diario" id="aj-cobro-d"><span><b>Por día</b><small>Vas anotando lo que cobrás y cada cobro se reparte en los próximos días.</small></span></label>
+    </fieldset>
+    <hr>
+
+    <form class="dlg" id="f-diario" novalidate>
+      <h3>Cobro por día</h3>
+      <div class="two">
+        <div>
+          <label class="field-label" for="aj-ventana">Repartir cada cobro en</label>
+          <select class="text" id="aj-ventana"></select>
+        </div>
+        <div>
+          <label class="field-label" for="aj-apartar">Apartar de cada cobro</label>
+          <div class="pct"><input class="text" id="aj-apartar" inputmode="numeric" autocomplete="off"><span>%</span></div>
+        </div>
+      </div>
+      <div>
+        <label class="field-label" for="aj-inicio">Contar desde</label>
+        <input class="text" type="date" id="aj-inicio">
+      </div>
+      <p class="hint">Más días hace que la cifra diaria cambie menos y te cubra los días que no trabajás. Lo que apartás no entra en lo que podés gastar.</p>
+      <p class="err" id="ad-err"></p>
+      <button class="btn primary" type="submit">Guardar cambios</button>
+    </form>
+
+    <div class="dlg" id="sec-mensual">
     <form class="dlg" id="f-ajustes" novalidate>
       <h3>Este período</h3>
       <div>
@@ -177,11 +238,12 @@
       <p class="err" id="np-err"></p>
       <button class="btn" type="submit">Empezar período nuevo</button>
     </form>
+    </div>
 
     <hr>
     <div class="dlg" id="sec-backup">
       <h3>Backup</h3>
-      <p class="hint">Tus gastos se guardan solo en este dispositivo. El backup es un archivo <span class="mono">.sqlite</span> que podés guardar en Archivos, iCloud o Drive, y que también abrís con DB Browser, DBeaver o <span class="mono">sqlite3</span>.</p>
+      <p class="hint">Tus datos se guardan solo en este dispositivo. El backup es un archivo <span class="mono">.sqlite</span> que podés guardar en Archivos, iCloud o Drive, y que también abrís con DB Browser, DBeaver o <span class="mono">sqlite3</span>.</p>
       <div class="row-btns">
         <button class="btn" type="button" id="exp-db">Bajar backup (.sqlite)</button>
         <button class="btn" type="button" id="exp-csv">Bajar CSV</button>

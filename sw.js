@@ -1,6 +1,6 @@
 /* Service worker: guarda la app para que abra sin internet.
    Cada vez que cambies algún archivo, subí VERSION para que los teléfonos bajen la versión nueva. */
-const VERSION = 'v1';
+const VERSION = 'v2';
 const CACHE = `gasto-diario-${VERSION}`;
 const ASSETS = [
   './',
