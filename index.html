@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Gasto diario</title>
+<meta name="description" content="Anotá cada gasto y mirá cuánto te queda para hoy. Lo que sobra o te pasás se arrastra a los días siguientes. Tus datos quedan en tu dispositivo.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#F1F4F7">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0C131C">
+<meta name="color-scheme" content="light dark">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Gastos">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="format-detection" content="telephone=no">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="icon" href="icon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" href="archivo.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="styles.css">
+<script src="sql-wasm.js" defer></script>
+<script src="app.js" defer></script>
+</head>
+<body data-mode="loading">
+<div class="app">
+  <header class="top">
+    <div>
+      <h1>¿Cuánto puedo gastar hoy?</h1>
+      <p class="eyebrow" id="eyebrow">Abriendo tu base de datos…</p>
+    </div>
+    <button class="icon-btn needs-period" id="btn-ajustes" type="button" aria-label="Ajustes y backup">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>
+    </button>
+  </header>
+
+  <aside class="notice" id="install" hidden>
+    <p id="install-text"></p>
+    <div class="row-btns">
+      <button class="btn primary" type="button" id="install-btn" hidden>Instalar</button>
+      <button class="btn" type="button" id="install-dismiss">Entendido</button>
+    </div>
+  </aside>
+
+  <section class="hero" id="hero" aria-live="polite">
+    <p class="hero-label" id="hero-label">Te quedan para hoy</p>
+    <p class="hero-num"><span class="cur">$</span><span id="hero-digits">—</span></p>
+    <div class="meter needs-period" aria-hidden="true"><span id="meter"></span></div>
+    <p class="hero-sub" id="hero-sub">Cargando…</p>
+    <div class="pills needs-period" id="pills"></div>
+    <p class="tomorrow needs-period" id="tomorrow"></p>
+  </section>
+
+  <form class="card entry" id="setup" novalidate>
+    <div>
+      <label class="field-label" for="su-monto">Plata para el período</label>
+      <div class="amount"><span>$</span><input id="su-monto" inputmode="decimal" autocomplete="off" placeholder="0"></div>
+      <p class="preview" id="su-preview"></p>
+    </div>
+    <div class="two">
+      <div><label class="field-label" for="su-desde">Desde</label><input class="text" type="date" id="su-desde"></div>
+      <div><label class="field-label" for="su-hasta">Hasta</label><input class="text" type="date" id="su-hasta"></div>
+    </div>
+    <p class="err" id="su-err"></p>
+    <button class="btn primary" type="submit">Empezar</button>
+    <button class="link" type="button" id="su-import">¿Ya tenés un backup? Importalo</button>
+  </form>
+
+  <form class="card entry needs-period" id="f-gasto" novalidate>
+    <div>
+      <label class="field-label" for="in-monto">Anotar un gasto</label>
+      <div class="amount"><span>$</span><input id="in-monto" inputmode="decimal" autocomplete="off" enterkeyhint="done" placeholder="0"></div>
+      <p class="preview" id="in-preview">Podés escribir 4500, 4.500,50 o 15k</p>
+      <p class="err" id="in-err"></p>
+    </div>
+    <div class="chips" id="chips" role="radiogroup" aria-label="Categoría"></div>
+    <input class="text" id="in-nota" maxlength="120" autocomplete="off" placeholder="Detalle (opcional): café, nafta, Coto…">
+    <div class="row">
+      <input class="text" type="date" id="in-fecha" aria-label="Fecha del gasto">
+      <label class="switch" for="in-fijo">
+        <input type="checkbox" id="in-fijo">
+        <span>Gasto fijo<small>Alquiler, servicios, cuotas. Se reparte entre los días que quedan.</small></span>
+      </label>
+    </div>
+    <button class="btn primary" type="submit">Anotar gasto</button>
+  </form>
+
+  <aside class="notice warn needs-period" id="nag" hidden>
+    <p id="nag-text"></p>
+    <div class="row-btns"><button class="btn" type="button" id="nag-btn">Hacer backup ahora</button></div>
+  </aside>
+
+  <section class="block needs-period" aria-labelledby="h-periodo">
+    <h2 id="h-periodo">El período</h2>
+    <div class="monthbar" id="monthbar"><span class="fill" id="month-fill"></span><span class="pace" id="month-pace"></span></div>
+    <p class="caption" id="month-cap"></p>
+    <dl class="stats" id="stats"></dl>
+  </section>
+
+  <section class="block needs-period" aria-labelledby="h-dias">
+    <h2 id="h-dias">Día por día</h2>
+    <div class="chart" id="chart"></div>
+    <div class="legend" aria-hidden="true">
+      <span><i class="sw bar"></i>Gastado</span>
+      <span><i class="sw over"></i>Te pasaste</span>
+      <span><i class="sw tick"></i>Lo que tenías ese día</span>
+      <span><i class="sw base"></i>Base diaria</span>
+    </div>
+    <p class="daycap" id="daycap"></p>
+  </section>
+
+  <section class="block needs-period" aria-labelledby="h-cats">
+    <h2 id="h-cats">En qué se va</h2>
+    <div class="cats" id="cats"></div>
+  </section>
+
+  <section class="block needs-period" aria-labelledby="h-movs">
+    <div class="block-head">
+      <h2 id="h-movs">Movimientos</h2>
+      <button class="link" type="button" id="btn-todos" hidden>Ver todos</button>
+    </div>
+    <div class="movs" id="movs"></div>
+  </section>
+
+  <footer class="foot">
+    <div class="foot-row">
+      <span class="save-state" id="save-state" data-s="idle"><i></i><span id="save-text">Abriendo…</span></span>
+      <span id="db-info">SQLite</span>
+    </div>
+    <div class="foot-row"><span id="backup-info"></span></div>
+  </footer>
+</div>
+
+<input type="file" id="imp-file" class="sr-only" tabindex="-1" aria-hidden="true">
+
+<dialog id="dlg" aria-labelledby="dlg-title">
+  <div class="dlg">
+    <div class="dlg-head">
+      <h2 id="dlg-title">Ajustes</h2>
+      <button class="icon-btn" type="button" id="dlg-close" aria-label="Cerrar">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+
+    <form class="dlg" id="f-ajustes" novalidate>
+      <h3>Este período</h3>
+      <div>
+        <label class="field-label" for="aj-monto">Plata para el período</label>
+        <div class="amount small"><span>$</span><input id="aj-monto" inputmode="decimal" autocomplete="off"></div>
+      </div>
+      <div class="two">
+        <div><label class="field-label" for="aj-desde">Desde</label><input class="text" type="date" id="aj-desde"></div>
+        <div><label class="field-label" for="aj-hasta">Hasta</label><input class="text" type="date" id="aj-hasta"></div>
+      </div>
+      <fieldset>
+        <legend>Si me sobra o me paso en un día</legend>
+        <label class="opt" for="aj-modo-a"><input type="radio" name="modo" value="arrastre" id="aj-modo-a"><span><b>Pasa entero a mañana</b><small>Te sobran $10.000 hoy: mañana tenés $10.000 más. Te pasás $10.000: mañana tenés $10.000 menos.</small></span></label>
+        <label class="opt" for="aj-modo-r"><input type="radio" name="modo" value="reparto" id="aj-modo-r"><span><b>Se reparte en los días que quedan</b><small>Lo que sobra o falta se divide entre todos los días restantes. Cambia menos de un día a otro.</small></span></label>
+      </fieldset>
+      <p class="err" id="aj-err"></p>
+      <button class="btn primary" type="submit">Guardar cambios</button>
+    </form>
+
+    <hr>
+    <form class="dlg" id="f-nuevo" novalidate>
+      <h3>Período nuevo</h3>
+      <p class="hint">Arranca de cero con otro monto y otras fechas. Los gastos anteriores quedan guardados en la base.</p>
+      <div>
+        <label class="field-label" for="np-monto">Plata para el período nuevo</label>
+        <div class="amount small"><span>$</span><input id="np-monto" inputmode="decimal" autocomplete="off"></div>
+      </div>
+      <div class="two">
+        <div><label class="field-label" for="np-desde">Desde</label><input class="text" type="date" id="np-desde"></div>
+        <div><label class="field-label" for="np-hasta">Hasta</label><input class="text" type="date" id="np-hasta"></div>
+      </div>
+      <label class="switch" for="np-arrastre" id="np-arrastre-wrap"><input type="checkbox" id="np-arrastre"><span id="np-arrastre-txt">Sumar lo que sobró</span></label>
+      <p class="err" id="np-err"></p>
+      <button class="btn" type="submit">Empezar período nuevo</button>
+    </form>
+
+    <hr>
+    <div class="dlg" id="sec-backup">
+      <h3>Backup</h3>
+      <p class="hint">Tus gastos se guardan solo en este dispositivo. El backup es un archivo <span class="mono">.sqlite</span> que podés guardar en Archivos, iCloud o Drive, y que también abrís con DB Browser, DBeaver o <span class="mono">sqlite3</span>.</p>
+      <div class="row-btns">
+        <button class="btn" type="button" id="exp-db">Bajar backup (.sqlite)</button>
+        <button class="btn" type="button" id="exp-csv">Bajar CSV</button>
+        <button class="btn" type="button" id="imp-btn">Importar backup</button>
+      </div>
+      <div class="confirm" id="imp-confirm" hidden>
+        <p id="imp-confirm-text"></p>
+        <div class="row-btns">
+          <button class="btn danger" type="button" id="imp-ok">Reemplazar mis datos</button>
+          <button class="btn" type="button" id="imp-cancel">Cancelar</button>
+        </div>
+      </div>
+      <p class="hint" id="exp-msg"></p>
+    </div>
+  </div>
+</dialog>
+
+<div class="toast" id="toast" role="status" hidden><span id="toast-text"></span><button type="button" id="toast-btn">Deshacer</button></div>
+</body>
+</html>
