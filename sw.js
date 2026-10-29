@@ -1,6 +1,6 @@
 /* Service worker: guarda la app para que abra sin internet.
    Cada vez que cambies algún archivo, subí VERSION para que los teléfonos bajen la versión nueva. */
-const VERSION = 'v2';
+const VERSION = 'v3';
 const CACHE = `gasto-diario-${VERSION}`;
 const ASSETS = [
   './',
@@ -43,7 +43,10 @@ self.addEventListener('fetch', (event) => {
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
   if (url.origin !== self.location.origin) return;
-  const key = req.mode === 'navigate' ? new URL('index.html', self.registration.scope).href : req;
+  // Solo la portada de la app usa el index guardado; otras páginas (como /inicio/) se piden normalmente.
+  const scope = new URL(self.registration.scope).pathname;
+  const isApp = req.mode === 'navigate' && (url.pathname === scope || url.pathname === scope + 'index.html');
+  const key = isApp ? new URL('index.html', self.registration.scope).href : req;
   event.respondWith((async () => {
     const cache = await caches.open(CACHE);
     const cached = await cache.match(key, { ignoreSearch: true });

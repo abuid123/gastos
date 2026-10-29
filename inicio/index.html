@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Gasto diario: ¿cuánto puedo gastar hoy?</title>
+<meta name="description" content="Le decís cuánta plata tenés y anotás lo que gastás. Todos los días te dice cuánto te queda para hoy. Para sueldo mensual o si trabajás por tu cuenta.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_AR">
+<meta property="og:site_name" content="Gasto diario">
+<meta property="og:title" content="¿Cuánto puedo gastar hoy?">
+<meta property="og:description" content="Le decís cuánta plata tenés y anotás lo que gastás. Todos los días te dice cuánto te queda para hoy. Para sueldo mensual o si trabajás por tu cuenta.">
+<meta property="og:url" content="https://abuid123.github.io/gastos/inicio/">
+<meta property="og:image" content="https://abuid123.github.io/gastos/inicio/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Gasto diario: 1.560.000 dividido 24 días da 65.000 por día">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#F1F4F7">
+<link rel="canonical" href="https://abuid123.github.io/gastos/inicio/">
+<link rel="icon" href="../icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preload" href="../archivo.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Archivo";src:url(../archivo.woff2) format("woff2");font-weight:100 900;font-stretch:62% 125%;font-display:swap}
+@font-face{font-family:"Instrument Sans";src:url(../instrument-sans.woff2) format("woff2");font-weight:400 700;font-display:swap}
+@font-face{font-family:"DM Mono";src:url(../dm-mono-400.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"DM Mono";src:url(../dm-mono-500.woff2) format("woff2");font-weight:500;font-display:swap}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:#F1F4F7}
+*,*::before,*::after{box-sizing:border-box}
+a{color:#1D64AD}a:hover{color:#164E87}
+a:focus-visible{outline:2px solid #1D64AD;outline-offset:3px;border-radius:6px}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div style="background: #F1F4F7; color: #0F1B2A; font-family: 'Instrument Sans', system-ui, -apple-system, 'Segoe UI', sans-serif; font-size: 18px; line-height: 1.5; -webkit-font-smoothing: antialiased">
+
+  <header style="max-width: 1180px; margin: 0 auto; padding: 22px clamp(20px, 4vw, 48px); display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap">
+    <a href="../" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #0F1B2A">
+      <svg width="34" height="34" viewBox="0 0 100 100" aria-hidden="true"><rect x="0" y="0" width="100" height="100" rx="24" fill="#1D64AD"></rect><path d="M24 74V58a3 3 0 0 1 3-3h1a3 3 0 0 1 3 3v16zM35.25 74V54a3 3 0 0 1 3-3h1a3 3 0 0 1 3 3v20zM46.5 74V62a3 3 0 0 1 3-3h1a3 3 0 0 1 3 3v12zM69 74V56a3 3 0 0 1 3-3h1a3 3 0 0 1 3 3v18z" fill="#FFFFFF"></path><path d="M57.75 74V41a3 3 0 0 1 3-3h1a3 3 0 0 1 3 3v33z" fill="#F7A08C"></path><line x1="20" y1="48" x2="80" y2="48" stroke="#FFFFFF" stroke-opacity=".8" stroke-width="2.4" stroke-dasharray="4.2 3.2" stroke-linecap="round"></line></svg>
+      <span style="font-family: 'Archivo', sans-serif; font-stretch: 112%; font-weight: 800; font-size: 20px; letter-spacing: -0.01em">Gasto diario</span>
+    </a>
+    <nav style="display: flex; align-items: center; gap: 22px; flex-wrap: wrap; font-size: 16px">
+      <a href="#arrastre" style="color: #3E4A5B; text-decoration: none">Cómo funciona</a>
+      <a href="#instalar" style="color: #3E4A5B; text-decoration: none">Instalar</a>
+      <a href="../" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 12px; border: 1.5px solid #0F1B2A; color: #0F1B2A; text-decoration: none; font-weight: 600">Abrir la app</a>
+    </nav>
+  </header>
+
+  <main>
+    <section style="max-width: 1180px; margin: 0 auto; padding: clamp(28px, 6vw, 72px) clamp(20px, 4vw, 48px) clamp(48px, 7vw, 96px); display: flex; flex-wrap: wrap; align-items: center; gap: clamp(40px, 6vw, 88px)">
+      <div style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 26px">
+        <p style="margin: 0; font-family: 'DM Mono', ui-monospace, monospace; font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase; color: #566376">Para iPhone, Android y Mac · Sin cuenta ni contraseña</p>
+        <h1 style="margin: 0; font-family: 'Archivo', sans-serif; font-weight: 850; font-stretch: 118%; font-size: clamp(46px, 7.4vw, 104px); line-height: 0.92; letter-spacing: -0.035em; text-wrap: balance">¿Cuánto puedo gastar hoy?</h1>
+        <p style="margin: 0; font-size: clamp(18px, 1.7vw, 22px); line-height: 1.5; color: #2F3B4C; max-width: 34ch">Le decís cuánta plata tenés hasta fin de mes y anotás lo que gastás. Todos los días te dice cuánto te queda para hoy. Lo que no gastás pasa a mañana; si te pasás, se descuenta del día siguiente.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center">
+          <a href="../" style="display: inline-flex; align-items: center; gap: 10px; min-height: 56px; padding: 0 26px; border-radius: 14px; background: #1D64AD; color: #FFFFFF; text-decoration: none; font-weight: 700; font-size: 18px">Empezar ahora <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+          <a href="#arrastre" style="display: inline-flex; align-items: center; min-height: 56px; padding: 0 22px; border-radius: 14px; color: #0F1B2A; text-decoration: none; font-weight: 600; font-size: 18px; border: 1.5px solid #C9D2DD; background: #FFFFFF">Ver cómo funciona</a>
+        </div>
+        <p style="margin: 0; font-size: 15px; color: #566376">No pide mail. Tus gastos quedan guardados en tu teléfono y nadie más los ve.</p>
+      </div>
+
+      <div style="flex: 0 1 340px; min-width: 0; display: flex; justify-content: center; margin-inline: auto">
+        <div style="width: 330px; max-width: 100%; box-sizing: border-box; padding: 11px; border-radius: 46px; background: #0F1B2A; box-shadow: 0 30px 60px -20px rgba(15,27,42,.45); transform: rotate(-2.5deg)">
+          <div style="border-radius: 36px; background: #F1F4F7; padding: 26px 20px 22px; display: flex; flex-direction: column; gap: 12px">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px">
+              <div>
+                <div style="font-family: 'Archivo', sans-serif; font-stretch: 108%; font-weight: 700; font-size: 13px">¿Cuánto puedo gastar hoy?</div>
+                <div style="font-size: 11px; color: #566376">Del 8 oct al 31 oct · día 20 de 24</div>
+              </div>
+              <div style="width: 28px; height: 28px; border-radius: 8px; border: 1px solid #D8DFE7; background: #FFFFFF; flex: none"></div>
+            </div>
+            <div style="font-size: 10px; letter-spacing: 0.09em; text-transform: uppercase; color: #566376; font-weight: 600; margin-top: 6px">Te quedan para hoy</div>
+            <div style="font-family: 'Archivo', sans-serif; font-weight: 800; font-stretch: 115%; font-size: 52px; line-height: 0.95; letter-spacing: -0.025em"><span style="font-size: 26px; vertical-align: 20px; color: #566376">$</span>48.500</div>
+            <div style="height: 7px; border-radius: 4px; background: #E3E9F0; overflow: hidden"><div style="width: 39%; height: 100%; border-radius: 4px; background: #1D64AD"></div></div>
+            <div style="font-size: 12.5px; color: #566376">Gastaste <b style="color: #0F1B2A">$31.500</b> de $80.000 disponibles hoy.</div>
+            <div style="display: flex; gap: 6px; flex-wrap: wrap">
+              <span style="font-size: 11px; color: #566376; border: 1px solid #D8DFE7; background: #FFFFFF; border-radius: 99px; padding: 3px 9px">Base <span style="font-family: 'DM Mono', monospace; color: #0F1B2A">$65.000</span></span>
+              <span style="font-size: 11px; color: #566376; border: 1px solid #D8DFE7; background: #FFFFFF; border-radius: 99px; padding: 3px 9px">Arrastre <span style="font-family: 'DM Mono', monospace; color: #1B7A50">+$15.000</span></span>
+            </div>
+            <div style="font-size: 12.5px">Mañana: <span style="font-family: 'DM Mono', monospace">$113.500</span> si no gastás más hoy.</div>
+            <div style="margin-top: 6px; background: #FFFFFF; border: 1px solid #D8DFE7; border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 10px">
+              <div style="display: flex; padding: 2px; border-radius: 9px; background: #E3E9F0; font-size: 11.5px; font-weight: 600">
+                <div style="flex: 1; text-align: center; padding: 5px; border-radius: 7px; background: #FFFFFF">Gasto</div>
+                <div style="flex: 1; text-align: center; padding: 5px; color: #566376">Ingreso</div>
+              </div>
+              <div style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 24px; border-bottom: 2px solid #1D64AD; padding-bottom: 2px"><span style="color: #566376; font-size: 18px">$</span> 12k<span style="display: inline-block; width: 2px; height: 22px; background: #1D64AD; vertical-align: -3px; margin-left: 2px"></span></div>
+              <div style="display: flex; gap: 5px; flex-wrap: wrap; font-size: 11px">
+                <span style="border-radius: 99px; padding: 4px 9px; background: #0F1B2A; color: #F1F4F7">Súper</span>
+                <span style="border-radius: 99px; padding: 4px 9px; border: 1px solid #D8DFE7">Comida</span>
+                <span style="border-radius: 99px; padding: 4px 9px; border: 1px solid #D8DFE7">Transporte</span>
+                <span style="border-radius: 99px; padding: 4px 9px; border: 1px solid #D8DFE7">Salidas</span>
+              </div>
+              <div style="border-radius: 10px; background: #1D64AD; color: #FFFFFF; text-align: center; font-weight: 600; font-size: 13px; padding: 10px">Anotar gasto</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="h-cuenta" style="background-color: #F7F9FB; background-image: linear-gradient(rgba(29,100,173,0.10) 1px, transparent 1px), linear-gradient(90deg, rgba(29,100,173,0.10) 1px, transparent 1px); background-size: 24px 24px; border-block: 1px solid #D8DFE7">
+      <div style="max-width: 1180px; margin: 0 auto; padding: clamp(48px, 7vw, 88px) clamp(20px, 4vw, 48px)">
+        <div style="border-left: 2px solid #E4A397; padding-left: clamp(18px, 3vw, 40px); display: flex; flex-direction: column; gap: 28px">
+          <h2 id="h-cuenta" style="margin: 0; font-family: 'DM Mono', ui-monospace, monospace; font-weight: 500; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: #566376">La cuenta que hacés de cabeza, hecha todos los días</h2>
+          <div style="display: flex; flex-wrap: wrap; align-items: flex-start; gap: clamp(14px, 2.4vw, 32px); font-family: 'DM Mono', ui-monospace, monospace">
+            <div style="display: flex; flex-direction: column; gap: 6px">
+              <span style="font-size: clamp(30px, 4.6vw, 64px); font-weight: 500; letter-spacing: -0.03em; line-height: 1">$1.560.000</span>
+              <span style="font-family: 'Instrument Sans', sans-serif; font-size: 15px; color: #566376">lo que tenés</span>
+            </div>
+            <span aria-hidden="true" style="font-size: clamp(30px, 4.6vw, 64px); line-height: 1; color: #8A96A6">÷</span>
+            <div style="display: flex; flex-direction: column; gap: 6px">
+              <span style="font-size: clamp(30px, 4.6vw, 64px); font-weight: 500; letter-spacing: -0.03em; line-height: 1">24 días</span>
+              <span style="font-family: 'Instrument Sans', sans-serif; font-size: 15px; color: #566376">hasta que vuelvas a cobrar</span>
+            </div>
+            <span aria-hidden="true" style="font-size: clamp(30px, 4.6vw, 64px); line-height: 1; color: #8A96A6">=</span>
+            <div style="display: flex; flex-direction: column; gap: 6px">
+              <span style="font-size: clamp(30px, 4.6vw, 64px); font-weight: 500; letter-spacing: -0.03em; line-height: 1; color: #1D64AD; text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 8px">$65.000</span>
+              <span style="font-family: 'Instrument Sans', sans-serif; font-size: 15px; color: #566376">para gastar cada día</span>
+            </div>
+          </div>
+          <p style="margin: 0; max-width: 60ch; font-size: 18px; color: #2F3B4C">Hasta ahí, cualquiera. Lo difícil es el martes que gastaste de más o la semana que te sobró. La app lleva esa cuenta por vos y la corrige cada vez que anotás algo.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="arrastre" aria-labelledby="h-arrastre" style="max-width: 1180px; margin: 0 auto; padding: clamp(56px, 8vw, 112px) clamp(20px, 4vw, 48px) clamp(40px, 6vw, 72px); display: flex; flex-direction: column; gap: 32px">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px 40px">
+        <h2 id="h-arrastre" style="margin: 0; font-family: 'Archivo', sans-serif; font-weight: 800; font-stretch: 112%; font-size: clamp(34px, 4.6vw, 60px); line-height: 1; letter-spacing: -0.03em; max-width: 15ch; text-wrap: balance">Lo que sobra hoy, lo tenés mañana</h2>
+        <p style="margin: 0; max-width: 40ch; color: #3E4A5B">Una semana cualquiera con $65.000 por día. Los días que gastás menos te hacen colchón; los que te pasás, se descuentan solos.</p>
+      </div>
+      <div role="list" style="display: flex; flex-wrap: wrap; gap: 1px; background: #D8DFE7; border: 1px solid #D8DFE7; border-radius: 18px; overflow: hidden">
+        
+          <div role="listitem" style="flex: 1 1 140px; min-width: 0; background: #FFFFFF; padding: 20px 18px 22px; display: flex; flex-direction: column; gap: 10px">
+            <div style="font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #566376">Lun</div>
+            <div style="font-size: 14px; color: #566376">Tenías <span style="display: block; font-family: 'DM Mono', monospace; font-size: 20px; color: #0F1B2A">$65.000</span></div>
+            <div style="height: 6px; border-radius: 3px; background: #E3E9F0; overflow: hidden"><div style="height: 100%; border-radius: 3px; width: 61.5%; background: #5A9DD6"></div></div>
+            <div style="font-size: 14px; color: #566376">Gastaste <span style="font-family: 'DM Mono', monospace; color: #0F1B2A">$40.000</span></div>
+            <div style="margin-top: auto; padding-top: 10px; border-top: 1px dashed #D8DFE7">
+              <div style="font-family: 'DM Mono', monospace; font-size: 18px; font-weight: 500; color: #1B7A50">+$25.000</div>
+              <div style="font-size: 13px; color: #566376">pasa a mañana</div>
+            </div>
+          </div>
+        
+          <div role="listitem" style="flex: 1 1 140px; min-width: 0; background: #FFFFFF; padding: 20px 18px 22px; display: flex; flex-direction: column; gap: 10px">
+            <div style="font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #566376">Mar</div>
+            <div style="font-size: 14px; color: #566376">Tenías <span style="display: block; font-family: 'DM Mono', monospace; font-size: 20px; color: #0F1B2A">$90.000</span></div>
+            <div style="height: 6px; border-radius: 3px; background: #E3E9F0; overflow: hidden"><div style="height: 100%; border-radius: 3px; width: 100.0%; background: #BC3A26"></div></div>
+            <div style="font-size: 14px; color: #566376">Gastaste <span style="font-family: 'DM Mono', monospace; color: #0F1B2A">$95.000</span></div>
+            <div style="margin-top: auto; padding-top: 10px; border-top: 1px dashed #D8DFE7">
+              <div style="font-family: 'DM Mono', monospace; font-size: 18px; font-weight: 500; color: #BC3A26">−$5.000</div>
+              <div style="font-size: 13px; color: #566376">se descuenta mañana</div>
+            </div>
+          </div>
+        
+          <div role="listitem" style="flex: 1 1 140px; min-width: 0; background: #FFFFFF; padding: 20px 18px 22px; display: flex; flex-direction: column; gap: 10px">
+            <div style="font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #566376">Mié</div>
+            <div style="font-size: 14px; color: #566376">Tenías <span style="display: block; font-family: 'DM Mono', monospace; font-size: 20px; color: #0F1B2A">$60.000</span></div>
+            <div style="height: 6px; border-radius: 3px; background: #E3E9F0; overflow: hidden"><div style="height: 100%; border-radius: 3px; width: 50.0%; background: #5A9DD6"></div></div>
+            <div style="font-size: 14px; color: #566376">Gastaste <span style="font-family: 'DM Mono', monospace; color: #0F1B2A">$30.000</span></div>
+            <div style="margin-top: auto; padding-top: 10px; border-top: 1px dashed #D8DFE7">
+              <div style="font-family: 'DM Mono', monospace; font-size: 18px; font-weight: 500; color: #1B7A50">+$30.000</div>
+              <div style="font-size: 13px; color: #566376">pasa a mañana</div>
+            </div>
+          </div>
+        
+          <div role="listitem" style="flex: 1 1 140px; min-width: 0; background: #FFFFFF; padding: 20px 18px 22px; display: flex; flex-direction: column; gap: 10px">
+            <div style="font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #566376">Jue</div>
+            <div style="font-size: 14px; color: #566376">Tenías <span style="display: block; font-family: 'DM Mono', monospace; font-size: 20px; color: #0F1B2A">$95.000</span></div>
+            <div style="height: 6px; border-radius: 3px; background: #E3E9F0; overflow: hidden"><div style="height: 100%; border-radius: 3px; width: 73.7%; background: #5A9DD6"></div></div>
+            <div style="font-size: 14px; color: #566376">Gastaste <span style="font-family: 'DM Mono', monospace; color: #0F1B2A">$70.000</span></div>
+            <div style="margin-top: auto; padding-top: 10px; border-top: 1px dashed #D8DFE7">
+              <div style="font-family: 'DM Mono', monospace; font-size: 18px; font-weight: 500; color: #1B7A50">+$25.000</div>
+              <div style="font-size: 13px; color: #566376">pasa a mañana</div>
+            </div>
+          </div>
+        
+          <div role="listitem" style="flex: 1 1 140px; min-width: 0; background: #FFFFFF; padding: 20px 18px 22px; display: flex; flex-direction: column; gap: 10px">
+            <div style="font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #566376">Vie</div>
+            <div style="font-size: 14px; color: #566376">Tenías <span style="display: block; font-family: 'DM Mono', monospace; font-size: 20px; color: #0F1B2A">$90.000</span></div>
+            <div style="height: 6px; border-radius: 3px; background: #E3E9F0; overflow: hidden"><div style="height: 100%; border-radius: 3px; width: 100.0%; background: #BC3A26"></div></div>
+            <div style="font-size: 14px; color: #566376">Gastaste <span style="font-family: 'DM Mono', monospace; color: #0F1B2A">$120.000</span></div>
+            <div style="margin-top: auto; padding-top: 10px; border-top: 1px dashed #D8DFE7">
+              <div style="font-family: 'DM Mono', monospace; font-size: 18px; font-weight: 500; color: #BC3A26">−$30.000</div>
+              <div style="font-size: 13px; color: #566376">se descuenta mañana</div>
+            </div>
+          </div>
+        
+          <div role="listitem" style="flex: 1 1 140px; min-width: 0; background: #FFFFFF; padding: 20px 18px 22px; display: flex; flex-direction: column; gap: 10px">
+            <div style="font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #566376">Sáb</div>
+            <div style="font-size: 14px; color: #566376">Tenías <span style="display: block; font-family: 'DM Mono', monospace; font-size: 20px; color: #0F1B2A">$35.000</span></div>
+            <div style="height: 6px; border-radius: 3px; background: #E3E9F0; overflow: hidden"><div style="height: 100%; border-radius: 3px; width: 57.1%; background: #5A9DD6"></div></div>
+            <div style="font-size: 14px; color: #566376">Gastaste <span style="font-family: 'DM Mono', monospace; color: #0F1B2A">$20.000</span></div>
+            <div style="margin-top: auto; padding-top: 10px; border-top: 1px dashed #D8DFE7">
+              <div style="font-family: 'DM Mono', monospace; font-size: 18px; font-weight: 500; color: #1B7A50">+$15.000</div>
+              <div style="font-size: 13px; color: #566376">pasa a mañana</div>
+            </div>
+          </div>
+        
+          <div role="listitem" style="flex: 1 1 140px; min-width: 0; background: #FFFFFF; padding: 20px 18px 22px; display: flex; flex-direction: column; gap: 10px">
+            <div style="font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #566376">Dom</div>
+            <div style="font-size: 14px; color: #566376">Tenías <span style="display: block; font-family: 'DM Mono', monospace; font-size: 20px; color: #0F1B2A">$80.000</span></div>
+            <div style="height: 6px; border-radius: 3px; background: #E3E9F0; overflow: hidden"><div style="height: 100%; border-radius: 3px; width: 62.5%; background: #5A9DD6"></div></div>
+            <div style="font-size: 14px; color: #566376">Gastaste <span style="font-family: 'DM Mono', monospace; color: #0F1B2A">$50.000</span></div>
+            <div style="margin-top: auto; padding-top: 10px; border-top: 1px dashed #D8DFE7">
+              <div style="font-family: 'DM Mono', monospace; font-size: 18px; font-weight: 500; color: #1B7A50">+$30.000</div>
+              <div style="font-size: 13px; color: #566376">pasa al lunes</div>
+            </div>
+          </div>
+        
+      </div>
+      <p style="margin: 0; font-size: 17px; color: #2F3B4C">En la semana gastaste <b>$425.000</b> de <b>$455.000</b>. Los <b style="color: #1B7A50">$30.000</b> que sobraron siguen ahí para el lunes.</p>
+    </section>
+
+    <section aria-labelledby="h-cobro" style="max-width: 1180px; margin: 0 auto; padding: clamp(40px, 6vw, 72px) clamp(20px, 4vw, 48px); display: flex; flex-direction: column; gap: 32px">
+      <h2 id="h-cobro" style="margin: 0; font-family: 'Archivo', sans-serif; font-weight: 800; font-stretch: 112%; font-size: clamp(34px, 4.6vw, 60px); line-height: 1; letter-spacing: -0.03em; text-wrap: balance">Cobres por mes o por día</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 20px">
+        <div style="flex: 1 1 380px; min-width: 0; padding: clamp(24px, 3vw, 36px); border-radius: 22px; background: #FFFFFF; border: 1px solid #D8DFE7; display: flex; flex-direction: column; gap: 16px">
+          <div style="font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #566376">Sueldo por mes</div>
+          <h3 style="margin: 0; font-family: 'Archivo', sans-serif; font-weight: 750; font-stretch: 108%; font-size: 28px; line-height: 1.1">Cargás lo que cobraste y hasta cuándo te tiene que durar</h3>
+          <p style="margin: 0; color: #3E4A5B">La app lo divide por los días que faltan y arranca a contar. Ves la base de cada día y lo que vas arrastrando.</p>
+          <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 16.5px">
+            <li style="display: flex; gap: 10px"><span aria-hidden="true" style="flex: none; margin-top: 9px; width: 8px; height: 8px; border-radius: 2px; background: #1D64AD"></span>¿Entró el aguinaldo o una changa? Lo anotás como ingreso y se reparte en los días que quedan.</li>
+            <li style="display: flex; gap: 10px"><span aria-hidden="true" style="flex: none; margin-top: 9px; width: 8px; height: 8px; border-radius: 2px; background: #1D64AD"></span>Cuando termina el mes, empezás otro y elegís si sumar lo que te sobró.</li>
+          </ul>
+        </div>
+        <div style="flex: 1 1 380px; min-width: 0; padding: clamp(24px, 3vw, 36px); border-radius: 22px; background: #0F1B2A; color: #E5EBF2; display: flex; flex-direction: column; gap: 16px">
+          <div style="font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #94A2B4">Cobro por día</div>
+          <h3 style="margin: 0; font-family: 'Archivo', sans-serif; font-weight: 750; font-stretch: 108%; font-size: 28px; line-height: 1.1; color: #FFFFFF">¿Trabajás de forma independiente?</h3>
+          <p style="margin: 0; color: #C3CDD9">Psicólogos, barberos, profes particulares, fleteros, el que vende en la feria. Si cobrás por sesión, por corte o por trabajo, anotás lo que entra y cada cobro se reparte en los próximos 7 días. Así tenés plata también los días sin trabajo.</p>
+          <div style="font-family: 'DM Mono', monospace; font-size: 15.5px; line-height: 1.6; background: #18263A; border: 1px solid #2A3A50; border-radius: 14px; padding: 14px 16px; color: #E5EBF2">El martes cobrás 3 sesiones: <span style="color: #4FC48D">$42.000</span><br>→ <span style="color: #4FC48D">+$6.000</span> por día hasta el lunes</div>
+          <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 16.5px">
+            <li style="display: flex; gap: 10px"><span aria-hidden="true" style="flex: none; margin-top: 9px; width: 8px; height: 8px; border-radius: 2px; background: #6DB1EE"></span>Apartá un porcentaje de cada cobro para ahorro o el monotributo.</li>
+            <li style="display: flex; gap: 10px"><span aria-hidden="true" style="flex: none; margin-top: 9px; width: 8px; height: 8px; border-radius: 2px; background: #6DB1EE"></span>Nunca te muestra plata que todavía no cobraste.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="h-trae" style="max-width: 1180px; margin: 0 auto; padding: clamp(40px, 6vw, 72px) clamp(20px, 4vw, 48px); display: flex; flex-wrap: wrap; gap: 32px 64px">
+      <h2 id="h-trae" style="flex: 1 1 260px; margin: 0; font-family: 'Archivo', sans-serif; font-weight: 800; font-stretch: 112%; font-size: clamp(34px, 4.6vw, 60px); line-height: 1; letter-spacing: -0.03em">Lo que trae</h2>
+      <ul style="flex: 2 1 560px; min-width: 0; margin: 0; padding: 0; list-style: none; font-size: 17px">
+        <li style="display: flex; align-items: baseline; gap: 10px; padding: 14px 0; border-bottom: 1px solid #D8DFE7; flex-wrap: wrap"><b style="font-weight: 600">Gastos fijos</b><span aria-hidden="true" style="flex: 1 1 40px; border-bottom: 2px dotted #B7C2CF; transform: translateY(-4px)"></span><span style="color: #3E4A5B">el alquiler se reparte en los días que quedan</span></li>
+        <li style="display: flex; align-items: baseline; gap: 10px; padding: 14px 0; border-bottom: 1px solid #D8DFE7; flex-wrap: wrap"><b style="font-weight: 600">Sin internet</b><span aria-hidden="true" style="flex: 1 1 40px; border-bottom: 2px dotted #B7C2CF; transform: translateY(-4px)"></span><span style="color: #3E4A5B">funciona después de abrirla una vez</span></li>
+        <li style="display: flex; align-items: baseline; gap: 10px; padding: 14px 0; border-bottom: 1px solid #D8DFE7; flex-wrap: wrap"><b style="font-weight: 600">Tus datos</b><span aria-hidden="true" style="flex: 1 1 40px; border-bottom: 2px dotted #B7C2CF; transform: translateY(-4px)"></span><span style="color: #3E4A5B">en tu teléfono, en una base SQLite</span></li>
+        <li style="display: flex; align-items: baseline; gap: 10px; padding: 14px 0; border-bottom: 1px solid #D8DFE7; flex-wrap: wrap"><b style="font-weight: 600">Backup</b><span aria-hidden="true" style="flex: 1 1 40px; border-bottom: 2px dotted #B7C2CF; transform: translateY(-4px)"></span><span style="color: #3E4A5B">un archivo .sqlite, o CSV para Excel</span></li>
+        <li style="display: flex; align-items: baseline; gap: 10px; padding: 14px 0; border-bottom: 1px solid #D8DFE7; flex-wrap: wrap"><b style="font-weight: 600">Anotar rápido</b><span aria-hidden="true" style="flex: 1 1 40px; border-bottom: 2px dotted #B7C2CF; transform: translateY(-4px)"></span><span style="color: #3E4A5B">escribís <span style="font-family: 'DM Mono', monospace">15k</span> y listo</span></li>
+        <li style="display: flex; align-items: baseline; gap: 10px; padding: 14px 0; border-bottom: 1px solid #D8DFE7; flex-wrap: wrap"><b style="font-weight: 600">En qué se va</b><span aria-hidden="true" style="flex: 1 1 40px; border-bottom: 2px dotted #B7C2CF; transform: translateY(-4px)"></span><span style="color: #3E4A5B">súper, comida, transporte, salidas</span></li>
+        <li style="display: flex; align-items: baseline; gap: 10px; padding: 14px 0; border-bottom: 1px solid #D8DFE7; flex-wrap: wrap"><b style="font-weight: 600">¿Le erraste?</b><span aria-hidden="true" style="flex: 1 1 40px; border-bottom: 2px dotted #B7C2CF; transform: translateY(-4px)"></span><span style="color: #3E4A5B">deshacés con un toque</span></li>
+      </ul>
+    </section>
+
+    <section id="instalar" aria-labelledby="h-instalar" style="background-color: #F7F9FB; background-image: linear-gradient(rgba(29,100,173,0.10) 1px, transparent 1px), linear-gradient(90deg, rgba(29,100,173,0.10) 1px, transparent 1px); background-size: 24px 24px; border-block: 1px solid #D8DFE7">
+      <div style="max-width: 1180px; margin: 0 auto; padding: clamp(48px, 7vw, 88px) clamp(20px, 4vw, 48px); display: flex; flex-direction: column; gap: 32px">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px 40px">
+          <h2 id="h-instalar" style="margin: 0; font-family: 'Archivo', sans-serif; font-weight: 800; font-stretch: 112%; font-size: clamp(34px, 4.6vw, 60px); line-height: 1; letter-spacing: -0.03em">Tenela a mano</h2>
+          <p style="margin: 0; max-width: 40ch; color: #3E4A5B">No hace falta la tienda de apps. Se instala desde el navegador y queda con su ícono, como cualquier otra.</p>
+        </div>
+        <ol style="margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 20px">
+          <li style="flex: 1 1 300px; min-width: 0; background: #FFFFFF; border: 1px solid #D8DFE7; border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 8px">
+            <b style="font-family: 'Archivo', sans-serif; font-stretch: 108%; font-size: 22px">iPhone</b>
+            <span style="color: #3E4A5B">Abrí el link en Safari, tocá <b>Compartir</b> y elegí <b>Agregar a pantalla de inicio</b>.</span>
+          </li>
+          <li style="flex: 1 1 300px; min-width: 0; background: #FFFFFF; border: 1px solid #D8DFE7; border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 8px">
+            <b style="font-family: 'Archivo', sans-serif; font-stretch: 108%; font-size: 22px">Android</b>
+            <span style="color: #3E4A5B">Abrí el link en Chrome y tocá <b>Instalar</b> cuando te lo ofrezca, o buscalo en el menú.</span>
+          </li>
+          <li style="flex: 1 1 300px; min-width: 0; background: #FFFFFF; border: 1px solid #D8DFE7; border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 8px">
+            <b style="font-family: 'Archivo', sans-serif; font-stretch: 108%; font-size: 22px">Mac</b>
+            <span style="color: #3E4A5B">En Safari, menú <b>Archivo</b> y <b>Agregar al Dock</b>. En Chrome, el botón <b>Instalar</b> de la barra de direcciones.</span>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section aria-labelledby="h-preguntas" style="max-width: 1180px; margin: 0 auto; padding: clamp(56px, 8vw, 104px) clamp(20px, 4vw, 48px); display: flex; flex-wrap: wrap; gap: 32px 64px">
+      <h2 id="h-preguntas" style="flex: 1 1 260px; margin: 0; font-family: 'Archivo', sans-serif; font-weight: 800; font-stretch: 112%; font-size: clamp(34px, 4.6vw, 60px); line-height: 1; letter-spacing: -0.03em">Preguntas</h2>
+      <dl style="flex: 2 1 560px; min-width: 0; margin: 0; display: flex; flex-direction: column; gap: 28px">
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <dt style="font-weight: 650; font-size: 19px">¿Dónde quedan mis datos?</dt>
+          <dd style="margin: 0; color: #3E4A5B">En tu teléfono, en una base de datos dentro de la app. No hay servidor ni cuenta, así que nadie más los ve.</dd>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <dt style="font-weight: 650; font-size: 19px">¿Y si cambio de teléfono?</dt>
+          <dd style="margin: 0; color: #3E4A5B">Desde Ajustes bajás un backup y lo importás en el nuevo. La app te recuerda hacerlo cada dos semanas.</dd>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <dt style="font-weight: 650; font-size: 19px">¿Necesito internet?</dt>
+          <dd style="margin: 0; color: #3E4A5B">Solo la primera vez que la abrís. Después anda sin conexión.</dd>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <dt style="font-weight: 650; font-size: 19px">Trabajo por mi cuenta y cobro distinto cada día, ¿me sirve?</dt>
+          <dd style="margin: 0; color: #3E4A5B">Sí. Elegís Cobro por día y anotás cada cobro, sea una sesión, un corte o un flete; la app lo reparte en la semana.</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section aria-labelledby="h-final" style="background: #0F1B2A; color: #E5EBF2">
+      <div style="max-width: 1180px; margin: 0 auto; padding: clamp(64px, 9vw, 120px) clamp(20px, 4vw, 48px); display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 32px">
+        <div style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 18px">
+          <h2 id="h-final" style="margin: 0; font-family: 'Archivo', sans-serif; font-weight: 850; font-stretch: 118%; font-size: clamp(40px, 6vw, 84px); line-height: 0.95; letter-spacing: -0.035em; color: #FFFFFF; text-wrap: balance">Averiguá cuánto podés gastar hoy.</h2>
+          <p style="margin: 0; font-size: 19px; color: #C3CDD9; max-width: 42ch">Te lleva un minuto: cargás la plata que tenés, las fechas, y ya te dice tu número.</p>
+        </div>
+        <a href="../" style="display: inline-flex; align-items: center; gap: 10px; min-height: 60px; padding: 0 30px; border-radius: 14px; background: #FFFFFF; color: #0F1B2A; text-decoration: none; font-weight: 700; font-size: 19px">Abrir Gasto diario <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      </div>
+    </section>
+  </main>
+
+  <footer style="background: #0F1B2A; color: #94A2B4; border-top: 1px solid #253344">
+    <div style="max-width: 1180px; margin: 0 auto; padding: 24px clamp(20px, 4vw, 48px) 32px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 14.5px">
+      <span>Gasto diario · Tus datos no salen de tu teléfono.</span>
+      <a href="https://github.com/abuid123/gastos" style="color: #C3CDD9">Código en GitHub</a>
+    </div>
+  </footer>
+</div>
+</body>
+</html>

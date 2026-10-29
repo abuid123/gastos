@@ -69,6 +69,7 @@ HTML, CSS y JavaScript sin frameworks ni build. SQLite corre en el navegador con
 | `sw.js` | Service worker (modo sin conexión) |
 | `manifest.webmanifest`, `icon*.png`, `icon.svg` | Datos para instalarla |
 | `sql-wasm.js`, `sql-wasm.wasm` | SQLite compilado a WebAssembly |
+| `inicio/index.html`, `inicio/og.png` | Landing para compartir (https://abuid123.github.io/gastos/inicio/) y su imagen de vista previa |
 
 ### Publicar cambios
 
